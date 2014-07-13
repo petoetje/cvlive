@@ -1,0 +1,12 @@
+modprobe ext3
+modprobe loop
+modprobe dm-snapshot
+SZ=$(blockdev --getsize $1)
+echo 0 $SZ linear $1 0 | dmsetup create liveroot
+echo 0 $SZ linear $1 0 | dmsetup create altroot
+mkdir /run/portas
+mount -t ramfs none /run/portas
+dd if=/dev/zero of=/run/portas/rd count=1 seek=$2
+losetup /dev/loop0 /run/portas/rd
+echo 0 $SZ snapshot /dev/mapper/liveroot /dev/loop0 p 8 | dmsetup create top
+mount /dev/mapper/liveroot /root

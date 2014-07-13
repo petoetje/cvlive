@@ -1,0 +1,5 @@
+#!/bin/bash
+SZ=$(blockdev --getsize /dev/mapper/altroot)
+dmsetup suspend top
+echo 0 $SZ snapshot-merge /dev/mapper/altroot /dev/loop0 p 8 | dmsetup create mergeomatic
+

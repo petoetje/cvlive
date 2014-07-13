@@ -1,0 +1,21 @@
+/etc/initramfs-tools
+--------------------
+modules
+
+/etc/initramfs-tools/scripts
+----------------------------
+liveroot : not-needed
+
+/usr/share/initramfs-tools/
+---------------------------
+modules
+init
+
+/usr/share/initramfs-tools/scripts
+----------------------------------
+local
+
+/root
+-----
+persist
+
