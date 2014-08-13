@@ -10,4 +10,4 @@
 # raid1
 # sd_mod
 dm-snapshot
-netconsole netconsole=@10.0.2.3/eth0,9353@10.0.2.2/
+#netconsole netconsole=@10.0.2.3/eth0,9353@10.0.2.2/

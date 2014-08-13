@@ -108,7 +108,7 @@ mountroot()
 	fi
 	umount /run/portas-oldroot
 	if [ -n "${CVLIVE}" -a  -n "${PORTAS}"  ] ; then
-		modprobe ext3
+		modprobe ${FSTYPE}
 		modprobe loop
 		modprobe dm-snapshot
 		SZ=$(blockdev --getsize $ROOT)
@@ -119,7 +119,8 @@ mountroot()
 		dd if=/dev/zero of=/run/portas/rd count=1 seek=${CVLIVE}
 		losetup /dev/loop0 /run/portas/rd
 		echo 0 $SZ snapshot /dev/mapper/liveroot /dev/loop0 p 8 | dmsetup create top
-		mount /dev/mapper/top ${rootmnt}
+		mkdir -p ${rootmnt}
+		mount -t ${FSTYPE} /dev/mapper/top ${rootmnt}
 	else
 		if [ "${FSTYPE}" != "unknown" ]; then
 			mount ${roflag} -t ${FSTYPE} ${ROOTFLAGS} ${ROOT} ${rootmnt}
