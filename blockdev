@@ -1,0 +1,3 @@
+# blockdev
+. /usr/share/initramfs-tools/hook-functions
+copy_exec /sbin/blockdev /bin/blockdev
