@@ -165,7 +165,6 @@ local_mount_root()
 		echo 0 $SZ linear $ROOT 0 | dmsetup create liveroot
 		echo 0 $SZ linear $ROOT 0 | dmsetup create altroot
 		mkdir /run/portas
-		mount -t ramfs none /run/portas
 		dd if=/dev/zero of=/run/portas/rd count=1 seek=${CVLIVE} bs=1
 		losetup /dev/loop0 /run/portas/rd
 		echo 0 $SZ snapshot /dev/mapper/liveroot /dev/loop0 p 8 | dmsetup create top
